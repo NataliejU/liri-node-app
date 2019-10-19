@@ -89,7 +89,7 @@ function spotify() {
             console.log(" ");
             console.log("The song you entered was " + value + ".");
             console.log(" ");
-            console.log("Here is the infromation you requested!");
+            console.log("Here is the information you requested!");
             console.log(" ");
             console.log("Track Title: " + data.tracks.items[0].name);
             console.log(" ");
@@ -189,59 +189,3 @@ function imdb() {
         }
     });
 }
-
-//do-what-it-says________________________________________________
-
-function dwis() {
-
-    //FS IS AN NPM PACKAGE FOR READING AND WRITING FILES 
-    var fs = require('fs');
-
-    // THIS BLOCK OF CODE READS FROM THE "random.txt" FILE.
-    // IT IS IMPORTANT TO INCLUDE THE "utf8" PARAMETER OR THE CODE WILL PROVIDE STREAM DATA (GARBAGE)
-    // THE CODE WILL STORE THE CONTENTS OF THE READING INSIDE THE VARIABLE "data" 
-    fs.readFile("random.txt", "utf8", function(error, data) {
-
-        //THIS SPLITS ALL THE INFORMATIOM INSIDE 
-        data = data.split(',');
-
-        var command;
-        var parameter;
-
-        // for (var i = 0; i < data.length; i++) {
-        //     result = data[i];
-        // }
-        if (data.length == 2) {
-            command = data[0];
-            parameter = data[1];
-            // console.log(command);
-            // console.log(parameter);
-        }
-        // PRINTS THE CONTENTS OF DATA WHICH IS IN RESULT 
-        //console.log(result);
-
-        // if (result != false) {
-        parameter = parameter.replace('"', '');
-        parameter = parameter.replace('"', '');
-        // console.log(parameter);
-
-        switch (command) {
-            case 'my-tweets':
-                value = parameter;
-                twitter();
-                break;
-
-            case 'spotify-this-song':
-                value = parameter;
-                spotify();
-                break;
-
-            case 'movie-this':
-                value = parameter;
-                imdb();
-                break;
-        }
-
-    });
-}
-
